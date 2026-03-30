@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productica — Marketing OS Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --bg-card: #ffffff;
+            --bg-dark: #0a0a0a;
+            --border: #0a0a0a;
+            --border-light: #e0e0e0;
+            --text: #0a0a0a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #8a8a8a;
+            --accent: #0a0a0a;
+            --accent-light: #2a2a2a;
+            --highlight: #f5f5f5;
+            --green: #16a34a;
+            --brand-cyan: #57d8ff;
+            --brand-blue: #4a7dff;
+            --brand-violet: #7b5cff;
+            --brand-pink: #ff5ca8;
+            --brand-coral: #ff6f70;
+            --brand-orange: #ff9a4d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: var(--bg);
+            border-bottom: 2px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .logo { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--text); }
+
+        .slide {
+            min-height: 100vh;
+            padding: 6rem 4rem 4rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .slide-alt { background: var(--bg-dark); color: var(--bg); }
+        .slide-alt .section-number, .slide-alt .slide-label { color: var(--text-muted); }
+        .slide-alt .slide-title { color: var(--bg); }
+        .slide-alt .slide-sub { color: #b0b0b0; }
+        .slide-alt .card { background: var(--accent-light); border-color: #3a3a3a; }
+        .slide-alt .card:hover { box-shadow: 4px 4px 0 #555; }
+        .slide-alt .card-desc { color: #b0b0b0; }
+        .slide-alt .card-tag { border-color: #555; }
+        .slide-alt .flow-item { background: var(--accent-light); border-color: #3a3a3a; }
+        .slide-alt .col-title { border-color: #555; }
+        .slide-alt .col-list li { color: #b0b0b0; }
+        .slide-alt .col-list li::before { color: var(--bg); }
+        .slide-alt .roadmap-item { border-color: #3a3a3a; }
+        .slide-alt .roadmap-item li { color: #b0b0b0; }
+        .slide-alt .matrix-cell { border-color: #3a3a3a; }
+        .slide-alt .matrix-cell.urgent { background: #1a1a1a; }
+        .slide-alt .matrix-cell li { color: #b0b0b0; border-color: #333; }
+        .slide-alt .pill { background: transparent; border-color: #444; color: #b0b0b0; }
+        .slide-alt .quote { border-color: #555; }
+        .slide-alt .highlight-box { border-color: #555; }
+        .slide-alt .highlight-box p { color: #b0b0b0; }
+
+        .slide-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem; }
+        .section-number { font-size: 0.875rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .slide-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; max-width: 900px; }
+        .slide-sub { font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; line-height: 1.6; }
+        .slide-sub strong { color: var(--text); font-weight: 600; }
+
+        .hero-slide { background: var(--bg); position: relative; }
+        .hero-meta { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light); }
+        .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+        .meta-value { font-size: 1.5rem; font-weight: 700; }
+        .meta-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+
+        .card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--border); }
+        .card-num { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-bottom: 1rem; }
+        .card-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .card-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+        .card-tag { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.625rem; border: 1px solid var(--border); margin-top: 1rem; }
+        .card-tag.dark { background: var(--accent); color: var(--bg); }
+        .card-tag.green { background: rgba(34, 197, 94, 0.15); color: var(--green); border-color: var(--green); }
+
+        .flow { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .flow-item { background: var(--bg-card); border: 2px solid var(--border); padding: 1rem 1.5rem; font-weight: 600; font-size: 0.9rem; }
+        .flow-arrow { font-size: 1.25rem; font-weight: 700; color: var(--text-muted); }
+
+        .stack-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        .stack-table th, .stack-table td { padding: 1rem; text-align: left; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg-card); color: var(--text); }
+        .stack-table th { background: var(--accent); color: var(--bg); font-weight: 600; }
+        .stack-table tr:nth-child(even) td { background: var(--highlight); }
+
+        .slide-alt .stack-table td { background: var(--accent-light); color: var(--bg); border-color: #444; }
+        .slide-alt .stack-table tr:nth-child(even) td { background: #222; }
+        .slide-alt .stack-table th { background: #333; border-color: #444; }
+
+        .roadmap-item { border: 2px solid var(--border); padding: 1.5rem; margin-bottom: 1rem; }
+        .roadmap-item .phase { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .roadmap-item .title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .roadmap-item ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .roadmap-item li { font-size: 0.875rem; color: var(--text-secondary); padding-left: 1.5rem; position: relative; }
+        .roadmap-item li::before { content: "→"; position: absolute; left: 0; color: var(--text-muted); }
+        .roadmap-item .deliverable { display: inline-block; margin-top: 1rem; font-size: 0.75rem; font-weight: 600; padding: 0.375rem 0.75rem; background: var(--accent); color: var(--bg); }
+
+        .matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .matrix-cell { border: 2px solid var(--border); padding: 1.25rem; }
+        .matrix-cell.urgent { border-color: var(--accent); background: var(--highlight); }
+        .matrix-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: var(--text-muted); }
+        .matrix-cell ul { list-style: none; font-size: 0.85rem; color: var(--text-secondary); }
+        .matrix-cell li { padding: 0.375rem 0; border-bottom: 1px solid var(--border-light); }
+        .matrix-cell li:last-child { border-bottom: none; }
+
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
+        .col-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+        .col-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .col-list li { font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.5rem; position: relative; }
+        .col-list li::before { content: "+"; position: absolute; left: 0; font-weight: 700; color: var(--text); }
+
+        .slide-footer { margin-top: auto; padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); }
+
+        .big-num { font-size: 6rem; font-weight: 700; line-height: 1; letter-spacing: -0.04em; }
+        .big-num-label { font-size: 1rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+        .pill-group { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .pill { font-size: 0.75rem; font-weight: 600; padding: 0.375rem 0.875rem; border: 1px solid var(--border); background: var(--bg); }
+        .pill.dark { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+        .existing-tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .existing-tool { border: 2px solid var(--green); background: rgba(34, 197, 94, 0.05); padding: 1.25rem; }
+        .existing-tool .tool-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .existing-tool .tool-desc { font-size: 0.8rem; color: var(--text-secondary); }
+        .existing-tool .tool-use { font-size: 0.75rem; color: var(--green); font-weight: 600; margin-top: 0.5rem; }
+
+        .integrate-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .integrate-card { border: 2px solid var(--border); padding: 1.5rem; }
+        .integrate-card .int-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .integrate-card ul { list-style: none; font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 0.5rem; }
+        .integrate-card li { padding-left: 1.25rem; position: relative; }
+        .integrate-card li::before { content: "→"; position: absolute; left: 0; color: var(--text-muted); }
+
+        .highlight-box { background: rgba(99, 102, 241, 0.05); border: 2px solid var(--accent); padding: 1.5rem; margin-top: 2rem; }
+        .highlight-box p { font-size: 1rem; color: var(--text-secondary); }
+        .highlight-box strong { color: var(--text); }
+
+        @media (max-width: 1024px) {
+            .slide { padding: 5rem 2rem 3rem; }
+            .grid-3 { grid-template-columns: 1fr; }
+            .two-col { grid-template-columns: 1fr; gap: 2rem; }
+            .matrix { grid-template-columns: 1fr; }
+            .existing-tools { grid-template-columns: 1fr; }
+            .integrate-grid { grid-template-columns: 1fr; }
+
+        }
+        @media (max-width: 768px) {
+            .grid-3 { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+            .flow { flex-direction: column; align-items: flex-start; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Productica</div>
+        <ul class="nav-links">
+            <li><a href="#context">Context</a></li>
+            <li><a href="#existing">What You Have</a></li>
+            <li><a href="#plan">The Plan</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+    </nav>
+
+    <section class="slide hero-slide" id="context">
+        <div class="section-number">00</div>
+        <div class="slide-label">Proposal</div>
+        <h1 class="slide-title">Marketing OS for<br>Productica's Next Chapter</h1>
+        <p class="slide-sub">
+            Here's how we build the marketing machine to support the ecosystem pivot — <strong>without rebuilding what's already been built</strong>.
+        </p>
+        <div class="hero-meta">
+            <div class="meta-item">
+                <span class="meta-value">63K+</span>
+                <span class="meta-label">Users to Leverage</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-value">75K+</span>
+                <span class="meta-label">Validated Ideas</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-value">April '26</span>
+                <span class="meta-label">Major Launch</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-value">₹7K/mo</span>
+                <span class="meta-label">New Spend</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-alt">
+        <div class="section-number">01</div>
+        <div class="slide-label">The Situation</div>
+        <h1 class="slide-title">Productica Has Everything<br>It Needs — Mostly</h1>
+        <p class="slide-sub">
+            You've built a product that works. 63K users. 75K validated ideas. Real proof. Now we're pivoting to an ecosystem — and the tech is sorted. But <strong>none of us own marketing</strong>.
+        </p>
+        <div class="grid-3" style="margin-top: 3rem;">
+            <div class="card">
+                <div class="card-num">What's working</div>
+                <div class="card-title">PMF Validation</div>
+                <div class="card-desc">AI-powered validation that actually gives founders signal. Users come back. Real traction.</div>
+            </div>
+            <div class="card">
+                <div class="card-num">What's working</div>
+                <div class="card-title">Tech Team</div>
+                <div class="card-desc">Co-founders own engineering. You can build anything you set your mind to.</div>
+            </div>
+            <div class="card">
+                <div class="card-num">What's missing</div>
+                <div class="card-title">Marketing Machine</div>
+                <div class="card-desc">No programmatic marketing. No lead pipeline. No systematic user acquisition.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" id="existing">
+        <div class="section-number">02</div>
+        <div class="slide-label">What I Already Have</div>
+        <h1 class="slide-title">I've Built<br>Half the Stack Already</h1>
+        <p class="slide-sub">
+            Before spending on new tools, I audited what exists. We have production-ready systems that just need to be connected. Here's what I found:
+        </p>
+        <div class="existing-tools">
+            <div class="existing-tool">
+                <div class="tool-name">signal-tweeter</div>
+                <div class="tool-desc">Twitter search → AI intent scoring → qualified leads. Already classifies buyer vs seller, scores intent, suggests outreach. Built for finding prospects.</div>
+                <div class="tool-use">→ Use it to: Find Indian founders on Twitter who need PMF validation</div>
+            </div>
+            <div class="existing-tool">
+                <div class="tool-name">replier</div>
+                <div class="tool-desc">Chrome extension + AI generates contextual replies on LinkedIn and X. Your co-founder built this — it's solid.</div>
+                <div class="tool-use">→ Use it to: Social selling at scale, engaging potential users</div>
+            </div>
+            <div class="existing-tool">
+                <div class="tool-name">viral-pipeline</div>
+                <div class="tool-desc">YouTube/Twitter/PDF → viral content templates. Content repurposing engine that turns long-form into social posts.</div>
+                <div class="tool-use">→ Use it to: Turn 75K validation stories into case study threads</div>
+            </div>
+            <div class="existing-tool">
+                <div class="tool-name">pSEO</div>
+                <div class="tool-desc">Python programmatic SEO generator. 1000s of static pages from JSON. Built for landing pages at scale.</div>
+                <div class="tool-use">→ Use it to: Rapid landing pages for each validation use case</div>
+            </div>
+            <div class="existing-tool">
+                <div class="tool-name">mail-engine</div>
+                <div class="tool-desc">Cold email infrastructure. Needs a production readiness check, but could be our email backbone.</div>
+                <div class="tool-use">→ Use it to: Email sequences (pending verification)</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-alt">
+        <div class="section-number">03</div>
+        <div class="slide-label">The Approach</div>
+        <h1 class="slide-title">Reuse. Buy. Build.<br>In That Order.</h1>
+        <p class="slide-sub">
+            We don't need to rebuild everything from scratch. We connect what exists, fill critical gaps with cheap tools, and build only what's genuinely new.
+        </p>
+        <div class="two-col" style="margin-top: 2rem;">
+            <div>
+                <div class="col-title">We Keep (Existing)</div>
+                <ul class="col-list">
+                    <li>signal-tweeter — Twitter lead gen</li>
+                    <li>replier — AI social selling</li>
+                    <li>viral-pipeline — Content repurposing</li>
+                    <li>pSEO — Landing page generator</li>
+                    <li>mail-engine — Email (pending check)</li>
+                    <li>Your Next.js stack — website</li>
+                </ul>
+            </div>
+            <div>
+                <div class="col-title">We Buy (Cheap, INR)</div>
+                <ul class="col-list">
+                    <li>Zoho CRM — ₹1.2K/mo</li>
+                    <li>Apollo — ₹1.5K/mo enrichment</li>
+                    <li>Buffer — ₹2K/mo scheduling</li>
+                    <li>Crisp — ₹2K/mo live chat</li>
+                    <li>Cal.com — Free (demo booking)</li>
+                    <li>PostHog — Free (analytics)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top: 2rem;">
+            <p><strong>Total new spend: ~₹7K/month</strong>. Everything else is integration work on tools I've already paid to build.</p>
+        </div>
+    </section>
+
+    <section class="slide" id="plan">
+        <div class="section-number">04</div>
+        <div class="slide-label">How It Fits Together</div>
+        <h1 class="slide-title">The Integration Map</h1>
+        <div class="integrate-grid">
+            <div class="integrate-card">
+                <div class="int-title">signal-tweeter → CRM</div>
+                <ul>
+                    <li>Export scored leads directly to Zoho</li>
+                    <li>Apollo auto-enriches with contact data</li>
+                    <li>High intent score triggers email sequence</li>
+                    <li>Track everything in the pipeline</li>
+                </ul>
+            </div>
+            <div class="integrate-card">
+                <div class="int-title">replier → Brand Presence</div>
+                <ul>
+                    <li>Deploy on Productica brand accounts</li>
+                    <li>Map to startup founder personas</li>
+                    <li>Track social engagement in PostHog</li>
+                    <li>Measure leads from social channel</li>
+                </ul>
+            </div>
+            <div class="integrate-card">
+                <div class="int-title">viral-pipeline → Content</div>
+                <ul>
+                    <li>Feed validation case studies in</li>
+                    <li>Generate LinkedIn + Twitter threads</li>
+                    <li>Schedule via Buffer</li>
+                    <li>Measure reach and engagement</li>
+                </ul>
+            </div>
+            <div class="integrate-card">
+                <div class="int-title">pSEO → Landing Pages</div>
+                <ul>
+                    <li>Generate pages for: SaaS PMF, e-commerce PMF, D2C PMF</li>
+                    <li>Use-case specific copy and headers</li>
+                    <li>UTM-tagged for attribution</li>
+                    <li>A/B test with PostHog</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-alt">
+        <div class="section-number">05</div>
+        <div class="slide-label">The Full Stack</div>
+        <h1 class="slide-title">What We're Running</h1>
+        <table class="stack-table">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th>Tool</th>
+                    <th>Cost/mo</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Analytics</td>
+                    <td>PostHog</td>
+                    <td>Free</td>
+                    <td>Existing</td>
+                </tr>
+                <tr>
+                    <td>Lead Gen (Twitter)</td>
+                    <td>signal-tweeter</td>
+                    <td>—</td>
+                    <td>Your tool</td>
+                </tr>
+                <tr>
+                    <td>Social Selling</td>
+                    <td>replier</td>
+                    <td>—</td>
+                    <td>Your tool</td>
+                </tr>
+                <tr>
+                    <td>Content Engine</td>
+                    <td>viral-pipeline</td>
+                    <td>—</td>
+                    <td>Your tool</td>
+                </tr>
+                <tr>
+                    <td>Landing Pages</td>
+                    <td>pSEO</td>
+                    <td>—</td>
+                    <td>Your tool</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>mail-engine / Brevo</td>
+                    <td>₹0–25K</td>
+                    <td>Verify / Backup</td>
+                </tr>
+                <tr>
+                    <td>CRM</td>
+                    <td>Zoho CRM</td>
+                    <td>₹1.2K</td>
+                    <td>New</td>
+                </tr>
+                <tr>
+                    <td>Enrichment</td>
+                    <td>Apollo</td>
+                    <td>₹1.5K</td>
+                    <td>New</td>
+                </tr>
+                <tr>
+                    <td>Scheduling</td>
+                    <td>Buffer</td>
+                    <td>₹2K</td>
+                    <td>New</td>
+                </tr>
+                <tr>
+                    <td>Live Chat</td>
+                    <td>Crisp</td>
+                    <td>₹2K</td>
+                    <td>New</td>
+                </tr>
+                <tr>
+                    <td>Demo Booking</td>
+                    <td>Cal.com</td>
+                    <td>Free</td>
+                    <td>New</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="highlight-box" style="margin-top: 1.5rem;">
+            <p><strong>New investment: ~₹7K/month</strong> + whatever we allocate to Google/Meta ads. Integration work on existing tools. No rebuilding from scratch.</p>
+        </div>
+    </section>
+
+    <section class="slide" id="roadmap">
+        <div class="section-number">06</div>
+        <div class="slide-label">Execution Plan</div>
+        <h1 class="slide-title">90 Days to<br>Marketing Machine</h1>
+        <div class="grid-3">
+            <div class="roadmap-item">
+                <div class="phase">Days 1–30</div>
+                <div class="title">Connect What Exists</div>
+                <ul>
+                    <li>Audit mail-engine production readiness</li>
+                    <li>Connect signal-tweeter → Zoho CRM</li>
+                    <li>Install PostHog + UTM strategy</li>
+                    <li>Deploy pSEO pages for 10 use cases</li>
+                </ul>
+                <span class="deliverable">Foundation live</span>
+            </div>
+            <div class="roadmap-item">
+                <div class="phase">Days 31–60</div>
+                <div class="title">Activate Channels</div>
+                <ul>
+                    <li>signal-tweeter running daily</li>
+                    <li>replier deployed on brand accounts</li>
+                    <li>viral-pipeline → Buffer schedule</li>
+                    <li>Google Ads brand + category campaigns</li>
+                </ul>
+                <span class="deliverable">First leads from own tools</span>
+            </div>
+            <div class="roadmap-item">
+                <div class="phase">Days 61–90</div>
+                <div class="title">Optimize & Scale</div>
+                <ul>
+                    <li>Full-funnel attribution reporting</li>
+                    <li>Nurture sequences by segment</li>
+                    <li>Retargeting + lookalike audiences</li>
+                    <li>Investor portal beta (5 investors)</li>
+                </ul>
+                <span class="deliverable">Measurable ROI</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide slide-alt">
+        <div class="section-number">07</div>
+        <div class="slide-label">Immediate Priorities</div>
+        <h1 class="slide-title">First Two Weeks</h1>
+        <div class="matrix">
+            <div class="matrix-cell urgent">
+                <div class="matrix-label">Week 1: Foundation</div>
+                <ul>
+                    <li>Verify mail-engine works for sequences</li>
+                    <li>Set up Zoho CRM with lead stages</li>
+                    <li>Connect signal-tweeter → Zoho</li>
+                    <li>PostHog across product + site</li>
+                </ul>
+            </div>
+            <div class="matrix-cell">
+                <div class="matrix-label">Week 2: Deploy</div>
+                <ul>
+                    <li>Deploy replier on brand accounts</li>
+                    <li>Generate 10 pSEO landing pages</li>
+                    <li>Buffer setup with viral-pipeline content</li>
+                    <li>First signal-tweeter → CRM run</li>
+                </ul>
+            </div>
+            <div class="matrix-cell">
+                <div class="matrix-label">Week 3–4: Activate</div>
+                <ul>
+                    <li>Welcome email sequence live</li>
+                    <li>LinkedIn presence (founder + brand)</li>
+                    <li>Google Ads campaign launch</li>
+                    <li>Apollo enrichment on hot leads</li>
+                </ul>
+            </div>
+            <div class="matrix-cell">
+                <div class="matrix-label">Later (When Scaling)</div>
+                <ul>
+                    <li>Custom email infrastructure</li>
+                    <li>Salesforce (100+ reps)</li>
+                    <li>Full Ahrefs/SEMrush</li>
+                    <li>Enterprise data warehouse</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="section-number">08</div>
+        <div class="slide-label">The Ask</div>
+        <h1 class="slide-title" style="margin: 0 auto 2rem;">Here's What I Need</h1>
+        <div style="display: flex; gap: 3rem; margin-top: 3rem; justify-content: center;">
+            <div style="text-align: left;">
+                <div class="big-num">₹7K</div>
+                <div class="big-num-label">Monthly Tools Budget</div>
+            </div>
+            <div style="text-align: left;">
+                <div class="big-num">2 weeks</div>
+                <div class="big-num-label">To Show First Results</div>
+            </div>
+            <div style="text-align: left;">
+                <div class="big-num">90 days</div>
+                <div class="big-num-label">To Full Machine</div>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top: 3rem; max-width: 700px;">
+            <p>I can build this. Your tools exist. We just need to connect them. <strong>Give me the tools budget and 2 weeks to show traction.</strong></p>
+        </div>
+        <div class="slide-footer" style="width: 100%; margin-top: 3rem;">
+            <span>Proposed by: Marketing Lead</span>
+            <span>Productica</span>
+        </div>
+    </section>
+
+</body>
+</html>
+
