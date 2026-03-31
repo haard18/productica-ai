@@ -89,6 +89,7 @@
         .slide-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.5rem; max-width: 900px; }
         .slide-sub { font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; line-height: 1.6; }
         .slide-sub strong { color: var(--text); font-weight: 600; }
+        .slide-alt .slide-sub strong { color: #ffffff; }
 
         .hero-slide { background: var(--bg); position: relative; }
         .hero-meta { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-light); }
@@ -173,6 +174,30 @@
         .highlight-box p { font-size: 1rem; color: var(--text-secondary); }
         .highlight-box strong { color: var(--text); }
 
+        .loop-diagram { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 2rem; flex-wrap: wrap; }
+        .loop-step { background: var(--bg-card); border: 2px solid var(--border); padding: 1rem 1.25rem; font-weight: 600; font-size: 0.85rem; text-align: center; min-width: 140px; }
+        .loop-arrow { font-size: 1.5rem; font-weight: 700; color: var(--text-muted); padding: 0 0.5rem; }
+        .loop-return { width: 100%; text-align: center; font-size: 1.5rem; font-weight: 700; color: var(--text-muted); margin-top: 0.5rem; }
+        .slide-alt .loop-step { background: var(--accent-light); border-color: #3a3a3a; }
+        .slide-alt .loop-arrow, .slide-alt .loop-return { color: #777; }
+
+        .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .metric-card { border: 2px solid var(--border); padding: 1.25rem; text-align: center; }
+        .metric-card .metric-val { font-size: 2rem; font-weight: 700; line-height: 1.2; }
+        .metric-card .metric-name { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+        .metric-card .metric-now { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .slide-alt .metric-card { border-color: #3a3a3a; }
+        .slide-alt .metric-card .metric-now { color: #888; }
+
+        .kill-rule { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
+        .kill-rule:last-child { border-bottom: none; }
+        .kill-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 0.125rem; }
+        .kill-text { font-size: 0.9rem; color: var(--text-secondary); }
+        .kill-text strong { color: var(--text); }
+        .slide-alt .kill-rule { border-color: #333; }
+        .slide-alt .kill-text { color: #b0b0b0; }
+        .slide-alt .kill-text strong { color: #fff; }
+
         @media (max-width: 1024px) {
             .slide { padding: 5rem 2rem 3rem; }
             .grid-3 { grid-template-columns: 1fr; }
@@ -180,7 +205,7 @@
             .matrix { grid-template-columns: 1fr; }
             .existing-tools { grid-template-columns: 1fr; }
             .integrate-grid { grid-template-columns: 1fr; }
-
+            .metric-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
             .grid-3 { grid-template-columns: 1fr; }
@@ -197,8 +222,8 @@
         <div class="logo">Productica</div>
         <ul class="nav-links">
             <li><a href="#context">Context</a></li>
-            <li><a href="#existing">What You Have</a></li>
-            <li><a href="#plan">The Plan</a></li>
+            <li><a href="#existing">Our Tools</a></li>
+            <li><a href="#plan">Growth Loop</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
         </ul>
     </nav>
@@ -208,9 +233,13 @@
         <div class="slide-label">Proposal</div>
         <h1 class="slide-title">Marketing OS for<br>Productica's Next Chapter</h1>
         <p class="slide-sub">
-            Here's how we build the marketing machine to support the ecosystem pivot — <strong>without rebuilding what's already been built</strong>.
+            Here's how we build the marketing machine to support the ecosystem pivot — <strong>without rebuilding what's already been built</strong>. One growth loop. One target: <strong>2x revenue in 90 days</strong>.
         </p>
         <div class="hero-meta">
+            <div class="meta-item">
+                <span class="meta-value">2x Revenue</span>
+                <span class="meta-label">90-Day Target</span>
+            </div>
             <div class="meta-item">
                 <span class="meta-value">63K+</span>
                 <span class="meta-label">Users to Leverage</span>
@@ -218,10 +247,6 @@
             <div class="meta-item">
                 <span class="meta-value">75K+</span>
                 <span class="meta-label">Validated Ideas</span>
-            </div>
-            <div class="meta-item">
-                <span class="meta-value">April '26</span>
-                <span class="meta-label">Major Launch</span>
             </div>
             <div class="meta-item">
                 <span class="meta-value">₹7K/mo</span>
@@ -235,7 +260,7 @@
         <div class="slide-label">The Situation</div>
         <h1 class="slide-title">Productica Has Everything<br>It Needs — Mostly</h1>
         <p class="slide-sub">
-            You've built a product that works. 63K users. 75K validated ideas. Real proof. Now we're pivoting to an ecosystem — and the tech is sorted. But <strong>none of us own marketing</strong>.
+            You've built a product that works. 63K users. 75K validated ideas. Real proof. Now we're pivoting to an ecosystem — and the tech is sorted. <strong>I'm here to own marketing and build the team to double revenue</strong>.
         </p>
         <div class="grid-3" style="margin-top: 3rem;">
             <div class="card">
@@ -249,9 +274,9 @@
                 <div class="card-desc">Co-founders own engineering. You can build anything you set your mind to.</div>
             </div>
             <div class="card">
-                <div class="card-num">What's missing</div>
-                <div class="card-title">Marketing Machine</div>
-                <div class="card-desc">No programmatic marketing. No lead pipeline. No systematic user acquisition.</div>
+                <div class="card-num">What's changing</div>
+                <div class="card-title">Marketing Team</div>
+                <div class="card-desc">I'm leading marketing with a dedicated team. We bring the tools, the system, and the accountability to double revenue.</div>
             </div>
         </div>
     </section>
@@ -292,22 +317,145 @@
         </div>
     </section>
 
-    <section class="slide slide-alt">
+    <section class="slide slide-alt" id="plan">
         <div class="section-number">03</div>
-        <div class="slide-label">The Approach</div>
-        <h1 class="slide-title">Reuse. Buy. Build.<br>In That Order.</h1>
+        <div class="slide-label">The Core System</div>
+        <h1 class="slide-title">One Dominant<br>Growth Loop</h1>
         <p class="slide-sub">
-            We don't need to rebuild everything from scratch. We connect what exists, fill critical gaps with cheap tools, and build only what's genuinely new.
+            Not 6 disconnected channels. <strong>One compounding loop</strong> where every cycle makes the next one better. Everything else supports this.
         </p>
+        <div class="loop-diagram">
+            <div class="loop-step">Validation Data<br><small style="font-weight:400;color:#aaa;">75K+ ideas</small></div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">pSEO Pages<br><small style="font-weight:400;color:#aaa;">high-intent keywords</small></div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">Inbound Users<br><small style="font-weight:400;color:#aaa;">organic signups</small></div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">More Data<br><small style="font-weight:400;color:#aaa;">richer validations</small></div>
+            <div class="loop-arrow">→</div>
+            <div class="loop-step">Better Pages<br><small style="font-weight:400;color:#aaa;">higher rankings</small></div>
+            <div class="loop-return">↻ compounds every cycle</div>
+        </div>
+        <div class="highlight-box" style="margin-top: 2rem;">
+            <p><strong>This is the flywheel.</strong> signal-tweeter, replier, and viral-pipeline are accelerants — they feed leads into the loop. But the loop itself is what compounds.</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="section-number">04</div>
+        <div class="slide-label">Primary Engine</div>
+        <h1 class="slide-title">pSEO as the<br>Compounding Machine</h1>
+        <p class="slide-sub">
+            Not a side tool. <strong>The primary inbound engine.</strong> We have 75K validated ideas — that's 75K potential pages Google wants to index.
+        </p>
+        <div class="grid-3" style="margin-top: 2rem;">
+            <div class="card">
+                <div class="card-num">Page Type</div>
+                <div class="card-title">"Top startup ideas in India (validated)"</div>
+                <div class="card-desc">Curated lists from real validation data. High search volume, high intent. Updated automatically as new validations come in.</div>
+                <div class="card-tag dark">High Volume</div>
+            </div>
+            <div class="card">
+                <div class="card-num">Page Type</div>
+                <div class="card-title">"Is [X idea] worth building?"</div>
+                <div class="card-desc">Long-tail pages answering the exact question founders Google at 2am. Each page pulls real validation scores.</div>
+                <div class="card-tag dark">High Intent</div>
+            </div>
+            <div class="card">
+                <div class="card-num">Page Type</div>
+                <div class="card-title">"Startup ideas with highest success rate"</div>
+                <div class="card-desc">Data-backed rankings no competitor can replicate. Defensible content moat built on proprietary validation data.</div>
+                <div class="card-tag dark">Defensible</div>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top: 2rem;">
+            <p><strong>Why this wins:</strong> Inbound compounds. Every page indexed is a permanent lead source. Competitors can't replicate it without 75K validations.</p>
+        </div>
+    </section>
+
+    <section class="slide slide-alt">
+        <div class="section-number">05</div>
+        <div class="slide-label">The Brain</div>
+        <h1 class="slide-title">PostHog Runs<br>the Feedback Loop</h1>
+        <p class="slide-sub">
+            Not just analytics. <strong>PostHog is the intelligence layer</strong> that makes the system get smarter every week.
+        </p>
+        <div class="grid-3" style="margin-top: 2rem;">
+            <div class="card">
+                <div class="card-num">Track</div>
+                <div class="card-title">Which Leads Convert</div>
+                <div class="card-desc">Full attribution from first touch to paid conversion. Know exactly which channel, page, and persona drives revenue — not just signups.</div>
+            </div>
+            <div class="card">
+                <div class="card-num">Track</div>
+                <div class="card-title">Which Tweets Drive Signups</div>
+                <div class="card-desc">UTM-tagged signal-tweeter outreach. Track which tweet topics, reply styles, and personas actually convert to users.</div>
+            </div>
+            <div class="card">
+                <div class="card-num">Track</div>
+                <div class="card-title">Which Personas Work</div>
+                <div class="card-desc">Segment by founder type, industry, stage. Find the ICP that converts best — then double down on that segment across all channels.</div>
+            </div>
+        </div>
+        <div class="flow" style="margin-top: 2rem;">
+            <div class="flow-item">PostHog Data</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">Update signal-tweeter scoring</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">Prioritize similar leads</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">Higher conversion</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">Better data</div>
+        </div>
+        <div class="highlight-box" style="margin-top: 2rem;">
+            <p><strong>Without this loop:</strong> intent scoring stays static, the system never learns, and you plateau. With it: every conversion makes the next one more likely.</p>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div class="section-number">06</div>
+        <div class="slide-label">Discipline</div>
+        <h1 class="slide-title">Kill What Doesn't<br>Convert. Fast.</h1>
+        <p class="slide-sub">
+            Not everything will work. The plan is to <strong>measure ruthlessly and cut low-signal channels</strong> before they waste time.
+        </p>
+        <div style="margin-top: 2rem; max-width: 700px;">
+            <div class="kill-rule">
+                <div class="kill-icon">&#x2715;</div>
+                <div class="kill-text"><strong>AI replies at scale (replier)</strong> — if reply-to-conversion rate drops below 1% after 2 weeks, scale back to manual-only outreach. AI replies often read as garbage and damage brand.</div>
+            </div>
+            <div class="kill-rule">
+                <div class="kill-icon">&#x2715;</div>
+                <div class="kill-text"><strong>Cold email (mail-engine)</strong> — if open rate &lt; 25% or reply rate &lt; 2% after 500 sends, kill the channel. Cold email infra is often ignored and burns sender reputation.</div>
+            </div>
+            <div class="kill-rule">
+                <div class="kill-icon">&#x2715;</div>
+                <div class="kill-text"><strong>Paid ads (Google/Meta)</strong> — if CAC exceeds 3-month LTV after ₹15K spend, pause and regroup. Don't feed a losing channel.</div>
+            </div>
+            <div class="kill-rule">
+                <div class="kill-icon">&#x2715;</div>
+                <div class="kill-text"><strong>Any channel</strong> — 2-week review cycles. No channel gets more than 30 days without proving positive unit economics.</div>
+            </div>
+        </div>
+        <div class="highlight-box" style="margin-top: 2rem;">
+            <p><strong>The rule:</strong> If conversion is below threshold, cut it fast. Redirect resources to pSEO loop and proven channels. Speed of learning > breadth of channels.</p>
+        </div>
+    </section>
+
+    <section class="slide slide-alt">
+        <div class="section-number">07</div>
+        <div class="slide-label">Stack + Budget</div>
+        <h1 class="slide-title">Reuse. Buy. Build.<br>In That Order.</h1>
         <div class="two-col" style="margin-top: 2rem;">
             <div>
                 <div class="col-title">We Keep (Existing)</div>
                 <ul class="col-list">
                     <li>signal-tweeter — Twitter lead gen</li>
-                    <li>replier — AI social selling</li>
+                    <li>replier — AI social selling (on probation)</li>
                     <li>viral-pipeline — Content repurposing</li>
-                    <li>pSEO — Landing page generator</li>
-                    <li>mail-engine — Email (pending check)</li>
+                    <li>pSEO — Primary inbound engine</li>
+                    <li>mail-engine — Email (verify before Day 1)</li>
                     <li>Your Next.js stack — website</li>
                 </ul>
             </div>
@@ -319,255 +467,130 @@
                     <li>Buffer — ₹2K/mo scheduling</li>
                     <li>Crisp — ₹2K/mo live chat</li>
                     <li>Cal.com — Free (demo booking)</li>
-                    <li>PostHog — Free (analytics)</li>
+                    <li>PostHog — Free (the brain)</li>
                 </ul>
             </div>
         </div>
+
         <div class="highlight-box" style="margin-top: 2rem;">
-            <p><strong>Total new spend: ~₹7K/month</strong>. Everything else is integration work on tools I've already paid to build.</p>
-        </div>
-    </section>
-
-    <section class="slide" id="plan">
-        <div class="section-number">04</div>
-        <div class="slide-label">How It Fits Together</div>
-        <h1 class="slide-title">The Integration Map</h1>
-        <div class="integrate-grid">
-            <div class="integrate-card">
-                <div class="int-title">signal-tweeter → CRM</div>
-                <ul>
-                    <li>Export scored leads directly to Zoho</li>
-                    <li>Apollo auto-enriches with contact data</li>
-                    <li>High intent score triggers email sequence</li>
-                    <li>Track everything in the pipeline</li>
-                </ul>
-            </div>
-            <div class="integrate-card">
-                <div class="int-title">replier → Brand Presence</div>
-                <ul>
-                    <li>Deploy on Productica brand accounts</li>
-                    <li>Map to startup founder personas</li>
-                    <li>Track social engagement in PostHog</li>
-                    <li>Measure leads from social channel</li>
-                </ul>
-            </div>
-            <div class="integrate-card">
-                <div class="int-title">viral-pipeline → Content</div>
-                <ul>
-                    <li>Feed validation case studies in</li>
-                    <li>Generate LinkedIn + Twitter threads</li>
-                    <li>Schedule via Buffer</li>
-                    <li>Measure reach and engagement</li>
-                </ul>
-            </div>
-            <div class="integrate-card">
-                <div class="int-title">pSEO → Landing Pages</div>
-                <ul>
-                    <li>Generate pages for: SaaS PMF, e-commerce PMF, D2C PMF</li>
-                    <li>Use-case specific copy and headers</li>
-                    <li>UTM-tagged for attribution</li>
-                    <li>A/B test with PostHog</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="slide slide-alt">
-        <div class="section-number">05</div>
-        <div class="slide-label">The Full Stack</div>
-        <h1 class="slide-title">What We're Running</h1>
-        <table class="stack-table">
-            <thead>
-                <tr>
-                    <th>Function</th>
-                    <th>Tool</th>
-                    <th>Cost/mo</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Analytics</td>
-                    <td>PostHog</td>
-                    <td>Free</td>
-                    <td>Existing</td>
-                </tr>
-                <tr>
-                    <td>Lead Gen (Twitter)</td>
-                    <td>signal-tweeter</td>
-                    <td>—</td>
-                    <td>my tool</td>
-                </tr>
-                <tr>
-                    <td>Social Selling</td>
-                    <td>replier</td>
-                    <td>—</td>
-                    <td>my tool</td>
-                </tr>
-                <tr>
-                    <td>Content Engine</td>
-                    <td>viral-pipeline</td>
-                    <td>—</td>
-                    <td>my tool</td>
-                </tr>
-                <tr>
-                    <td>Landing Pages</td>
-                    <td>pSEO</td>
-                    <td>—</td>
-                    <td>my tool</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>mail-engine / Brevo</td>
-                    <td>₹0–25K</td>
-                    <td>Verify / Backup</td>
-                </tr>
-                <tr>
-                    <td>CRM</td>
-                    <td>Zoho CRM</td>
-                    <td>₹1.2K</td>
-                    <td>New</td>
-                </tr>
-                <tr>
-                    <td>Enrichment</td>
-                    <td>Apollo</td>
-                    <td>₹1.5K</td>
-                    <td>New</td>
-                </tr>
-                <tr>
-                    <td>Scheduling</td>
-                    <td>Buffer</td>
-                    <td>₹2K</td>
-                    <td>New</td>
-                </tr>
-                <tr>
-                    <td>Live Chat</td>
-                    <td>Crisp</td>
-                    <td>₹2K</td>
-                    <td>New</td>
-                </tr>
-                <tr>
-                    <td>Demo Booking</td>
-                    <td>Cal.com</td>
-                    <td>Free</td>
-                    <td>New</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="highlight-box" style="margin-top: 1.5rem;">
-            <p><strong>New investment: ~₹7K/month</strong> + whatever we allocate to Google/Meta ads. Integration work on existing tools. No rebuilding from scratch.</p>
+            <p><strong>Total new spend: ~₹7K/month</strong>. Everything else is integration work on tools I've already built. Verify mail-engine before Day 1 — not during.</p>
         </div>
     </section>
 
     <section class="slide" id="roadmap">
-        <div class="section-number">06</div>
+        <div class="section-number">08</div>
         <div class="slide-label">Execution Plan</div>
-        <h1 class="slide-title">90 Days to<br>Marketing Machine</h1>
+        <h1 class="slide-title">90 Days to<br>2x Revenue</h1>
         <div class="grid-3">
             <div class="roadmap-item">
-                <div class="phase">Days 1–30</div>
-                <div class="title">Connect What Exists</div>
+                <div class="phase">Days 1–30: Foundation + Loop</div>
+                <div class="title">Get the Flywheel Spinning</div>
                 <ul>
-                    <li>Audit mail-engine production readiness</li>
+                    <li>Deploy 50+ pSEO pages (primary engine)</li>
+                    <li>PostHog full-funnel tracking live</li>
                     <li>Connect signal-tweeter → Zoho CRM</li>
-                    <li>Install PostHog + UTM strategy</li>
-                    <li>Deploy pSEO pages for 10 use cases</li>
+                    <li>First conversion data flowing back</li>
+                    <li>mail-engine verified before Day 1</li>
                 </ul>
-                <span class="deliverable">Foundation live</span>
+                <span class="deliverable">Loop running + first inbound leads</span>
             </div>
             <div class="roadmap-item">
-                <div class="phase">Days 31–60</div>
-                <div class="title">Activate Channels</div>
+                <div class="phase">Days 31–60: Learn + Cut</div>
+                <div class="title">Double Down or Kill</div>
                 <ul>
-                    <li>signal-tweeter running daily</li>
-                    <li>replier deployed on brand accounts</li>
-                    <li>viral-pipeline → Buffer schedule</li>
-                    <li>Google Ads brand + category campaigns</li>
+                    <li>First kill/keep decisions on channels</li>
+                    <li>Update signal-tweeter scoring from PostHog data</li>
+                    <li>Scale pSEO to 200+ pages</li>
+                    <li>Paid ads test (with kill threshold)</li>
+                    <li>Nurture sequences for converting personas</li>
                 </ul>
-                <span class="deliverable">First leads from own tools</span>
+                <span class="deliverable">System learning + channels pruned</span>
             </div>
             <div class="roadmap-item">
-                <div class="phase">Days 61–90</div>
-                <div class="title">Optimize & Scale</div>
+                <div class="phase">Days 61–90: Compound</div>
+                <div class="title">Scale What Works</div>
                 <ul>
+                    <li>pSEO at 500+ pages, compounding traffic</li>
                     <li>Full-funnel attribution reporting</li>
-                    <li>Nurture sequences by segment</li>
-                    <li>Retargeting + lookalike audiences</li>
-                    <li>Investor portal beta (5 investors)</li>
+                    <li>Scoring model v2 (data-driven)</li>
+                    <li>Only proven channels remain, scaled up</li>
                 </ul>
-                <span class="deliverable">Measurable ROI</span>
+                <span class="deliverable">2x revenue target</span>
             </div>
         </div>
     </section>
 
     <section class="slide slide-alt">
-        <div class="section-number">07</div>
-        <div class="slide-label">Immediate Priorities</div>
-        <h1 class="slide-title">First Two Weeks</h1>
-        <div class="matrix">
+        <div class="section-number">09</div>
+        <div class="slide-label">Target Metrics</div>
+        <h1 class="slide-title">How We Measure<br>2x Revenue</h1>
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-val">2x</div>
+                <div class="metric-name">Revenue</div>
+                <div class="metric-now">North star — 90-day target</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-val">500+</div>
+                <div class="metric-name">pSEO Pages Indexed</div>
+                <div class="metric-now">Primary inbound source by Day 90</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-val">10K+</div>
+                <div class="metric-name">Monthly Organic Visits</div>
+                <div class="metric-now">From pSEO compound growth</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-val">5%</div>
+                <div class="metric-name">Visitor → Signup Rate</div>
+                <div class="metric-now">Tracked end-to-end in PostHog</div>
+            </div>
+        </div>
+        <div class="matrix" style="margin-top: 2rem;">
             <div class="matrix-cell urgent">
-                <div class="matrix-label">Week 1: Foundation</div>
+                <div class="matrix-label">Weekly Review (Non-Negotiable)</div>
                 <ul>
-                    <li>Verify mail-engine works for sequences</li>
-                    <li>Set up Zoho CRM with lead stages</li>
-                    <li>Connect signal-tweeter → Zoho</li>
-                    <li>PostHog across product + site</li>
+                    <li>Which channels drove signups this week?</li>
+                    <li>Which leads converted to paid?</li>
+                    <li>Which pSEO pages rank / drive traffic?</li>
+                    <li>Is any channel below kill threshold?</li>
                 </ul>
             </div>
             <div class="matrix-cell">
-                <div class="matrix-label">Week 2: Deploy</div>
+                <div class="matrix-label">Monthly Feedback Loop</div>
                 <ul>
-                    <li>Deploy replier on brand accounts</li>
-                    <li>Generate 10 pSEO landing pages</li>
-                    <li>Buffer setup with viral-pipeline content</li>
-                    <li>First signal-tweeter → CRM run</li>
-                </ul>
-            </div>
-            <div class="matrix-cell">
-                <div class="matrix-label">Week 3–4: Activate</div>
-                <ul>
-                    <li>Welcome email sequence live</li>
-                    <li>LinkedIn presence (founder + brand)</li>
-                    <li>Google Ads campaign launch</li>
-                    <li>Apollo enrichment on hot leads</li>
-                </ul>
-            </div>
-            <div class="matrix-cell">
-                <div class="matrix-label">Later (When Scaling)</div>
-                <ul>
-                    <li>Custom email infrastructure</li>
-                    <li>Salesforce (100+ reps)</li>
-                    <li>Full Ahrefs/SEMrush</li>
-                    <li>Enterprise data warehouse</li>
+                    <li>Update signal-tweeter intent scoring</li>
+                    <li>Refresh top-performing pSEO pages</li>
+                    <li>Reallocate budget from dead to live channels</li>
+                    <li>Report: CAC, LTV, channel ROI</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section class="slide" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-        <div class="section-number">08</div>
+        <div class="section-number">10</div>
         <div class="slide-label">The Ask</div>
         <h1 class="slide-title" style="margin: 0 auto 2rem;">Here's What I Need</h1>
-        <div style="display: flex; gap: 3rem; margin-top: 3rem; justify-content: center;">
+        <div style="display: flex; gap: 3rem; margin-top: 3rem; justify-content: center; flex-wrap: wrap;">
             <div style="text-align: left;">
                 <div class="big-num">₹7K</div>
                 <div class="big-num-label">Monthly Tools Budget</div>
             </div>
             <div style="text-align: left;">
-                <div class="big-num">2 weeks</div>
-                <div class="big-num-label">To Show First Results</div>
+                <div class="big-num">2x</div>
+                <div class="big-num-label">Revenue in 90 Days</div>
             </div>
             <div style="text-align: left;">
-                <div class="big-num">90 days</div>
-                <div class="big-num-label">To Full Machine</div>
+                <div class="big-num">1 loop</div>
+                <div class="big-num-label">That Compounds</div>
             </div>
         </div>
         <div class="highlight-box" style="margin-top: 3rem; max-width: 700px;">
-            <p>I can build this. my tools exist. We just need to connect them. <strong>Give me the tools budget and 2 weeks to show traction.</strong></p>
+            <p>My tools exist. The data exists. I'll build the team, run the loop, and cut what doesn't convert. <strong>Give me the budget and I'll double the revenue.</strong></p>
         </div>
         <div class="slide-footer" style="width: 100%; margin-top: 3rem;">
-            <span>Proposed by: Marketing Lead</span>
-            <span>Productica</span>
+            <span>Proposed by: Haard Solanki</span>
         </div>
     </section>
 
